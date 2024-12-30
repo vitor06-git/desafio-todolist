@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "todos")
@@ -13,10 +14,25 @@ public class Todo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "Name nao pode ser vazio")
 	private String name;
+	
+	@NotBlank(message = "descricao test")
 	private String descricao;
 	private boolean realizado;
 	private int prioridade;
+	
+	
+	public Todo() {
+	}
+	
+	
+	public Todo(String name, String descricao, boolean realizado, int prioridade) {
+		this.name = name;
+		this.descricao = descricao;
+		this.realizado = realizado;
+		this.prioridade = prioridade;
+	}
 	public Long getId() {
 		return id;
 	}
